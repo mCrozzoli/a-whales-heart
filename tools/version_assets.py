@@ -7,7 +7,7 @@ deploy a browser can pair a new index.html with an old style.css. Giving every
 local reference a ?v= that changes with each deploy makes a browser fetch a
 matching set:
 
-    *.html   href="style.css"  src="darkstyle/darkstyle.js"
+    *.html   href="style.css"  src="darkstyle/darkstyle.js"  import("./engine.js")
     *.js     import ... from "./engine.js"
 
 Only relative references are stamped (not https://, //, data:). The source
@@ -34,6 +34,8 @@ def stamp(site: Path, version: str) -> list[str]:
         if path.suffix == ".html":
             text = path.read_text(encoding="utf-8")
             new = ATTR.sub(rf'\1="\2?v={version}"', text)
+            new = IMPORT.sub(rf'\1?v={version}"', new)      # inline <script type="module">
+
         elif path.suffix == ".js":
             text = path.read_text(encoding="utf-8")
             new = IMPORT.sub(rf'\1?v={version}"', text)

@@ -58,3 +58,18 @@ chmod +x ~/Desktop/a_whales_heart/whaleheart.command
 - [ ] OSC sync: browser → SuperCollider
 - [ ] Lunge event triggers
 - [ ] Spectral frequency routing (floor/ceiling transducers)
+
+## Web version
+
+Live at https://mcrozzoli.github.io/a-whales-heart/ (landing page) and `prototype.html` (the display,
+with SuperCollider running in the browser). Only `site/` is published, by `.github/workflows/pages.yml`
+on every push to `main`.
+
+- Edit the desktop files (`html/prototype.html`, `supercollider/whaleheart.scd`), then rebuild the web
+  copies: `python3 tools/build_web.py`. The few web-only changes are listed, with reasons, in that script.
+- Check before pushing: `python3 tools/check_site.py site` (refuses CLEARANCE-PENDING markers, symlinks,
+  huge files, and links starting with `/`).
+- Preview locally: `python3 -m http.server 8150 --directory site`, then http://localhost:8150/.
+  The first visit to the prototype reloads once (the service worker in `coi-sw.js`).
+- `site/engine/` is SuperCollider's WebAssembly build (develop @ 5d47207, unmodified; see
+  `site/engine/PROVENANCE.md`). `site/engine.js` plays the part of `bridge.py`.
