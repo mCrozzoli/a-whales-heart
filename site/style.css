@@ -1,0 +1,125 @@
+/* A Whale's Heart — landing page.
+   Every colour is a darkstyle token (darkstyle/darkstyle.css) or one of the three data colours below.
+   The look (dark / light / paper) is set on <html data-theme> by darkstyle.js before first paint. */
+
+/* Data colours: each keeps its hue family in every look (darkstyle rule 2); only the step changes
+   for the ground. Dark uses the prototype's own colours. */
+:root, [data-theme="dark"] {
+  --wh-depth: #00d4ff;   /* cyan: depth */
+  --wh-heart: #ffaa2c;   /* amber: heartbeat */
+  --wh-amp:   #4dffb4;   /* green: amplitude */
+}
+[data-theme="light"] {
+  --wh-depth: #00739e;
+  --wh-heart: #a35a00;
+  --wh-amp:   #137a55;
+}
+[data-theme="paper"] {
+  --wh-depth: #2f5d7c;   /* ink-blue */
+  --wh-heart: #9c6710;   /* ochre */
+  --wh-amp:   #4e6e2a;   /* olive */
+}
+
+* { box-sizing: border-box; }
+
+html { background: var(--ds-bg); }
+body {
+  margin: 0;
+  background: var(--ds-bg) var(--ds-grain);
+  color: var(--ds-txt);
+  font: var(--ds-font-size)/1.6 var(--ds-font-ui);
+}
+
+main, .bar { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+
+a { color: var(--ds-cur-txt); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--ds-ring); outline-offset: 2px; }
+
+h1, h2 {
+  font-family: var(--ds-font-display);
+  font-weight: var(--ds-display-weight);
+  color: var(--ds-txt-hi);
+  line-height: 1.2;
+}
+h2 {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--ds-label);
+  margin: 0 0 12px;
+}
+
+/* ── top bar ── */
+.bar {
+  display: flex; align-items: center; gap: 12px;
+  padding-top: 14px; padding-bottom: 14px;
+  border-bottom: 1px solid var(--ds-line);
+}
+.bar .name { color: var(--ds-dim); letter-spacing: .08em; }
+.bar .ds-looks { margin-left: auto; width: 210px; }
+
+/* the LOOK buttons darkstyle.js builds */
+.look-btn {
+  font: inherit; font-size: .85em;
+  padding: 4px 0;
+  background: var(--ds-ctl); color: var(--ds-txt);
+  border: 1px solid var(--ds-ctl-line); border-radius: 3px;
+  cursor: pointer;
+}
+.look-btn:hover { background: var(--ds-ctl-hover); border-color: var(--ds-ctl-line-hi); }
+.look-btn.on { background: var(--ds-cur); color: var(--ds-on-cur); border-color: var(--ds-cur-line); }
+
+/* ── hero ── */
+.hero { padding: 64px 0 40px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; }
+.hero h1 { font-size: clamp(2rem, 7vw, 3.4rem); margin: 0 0 12px; }
+.hero p { margin: 0; max-width: 46ch; font-size: 1.08em; }
+
+/* the beat: a dot that pulses at the surface rate, 30 bpm = one beat every 2 s */
+.beat {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--wh-heart);
+  margin: 40px;
+  animation: beat 2s infinite;
+}
+@keyframes beat {
+  0%   { box-shadow: 0 0 0 0 var(--wh-heart); }
+  70%  { box-shadow: 0 0 0 36px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+@media (prefers-reduced-motion: reduce) { .beat { animation: none; } }
+
+/* ── sections ── */
+section { padding: 32px 0; border-top: 1px solid var(--ds-line); }
+section p { max-width: 62ch; }
+
+.cta {
+  display: inline-block; margin-top: 8px;
+  padding: 8px 16px; border-radius: 3px;
+  background: var(--ds-cur); color: var(--ds-on-cur);
+  border: 1px solid var(--ds-cur-line);
+  text-decoration: none;
+}
+.cta:hover { filter: brightness(1.05); }
+.note { color: var(--ds-dim); font-size: .92em; }
+
+/* the mapping table */
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: left; padding: 8px 12px 8px 0; border-bottom: 1px solid var(--ds-line); }
+th { color: var(--ds-dim); font-weight: normal; font-size: .85em; text-transform: uppercase; letter-spacing: .1em; }
+td.num { font-variant-numeric: tabular-nums; }
+.key { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; vertical-align: 1px; }
+.key.depth { background: var(--wh-depth); }
+.key.heart { background: var(--wh-heart); }
+.key.amp   { background: var(--wh-amp); }
+
+.cite { color: var(--ds-dim); font-size: .92em; }
+
+footer { padding: 32px 0 48px; border-top: 1px solid var(--ds-line); color: var(--ds-dim); font-size: .9em; }
+
+/* phone width */
+@media (max-width: 560px) {
+  .hero { grid-template-columns: 1fr; padding-top: 40px; }
+  .beat { margin: 8px 0 0 12px; }
+  .bar .ds-looks { width: 180px; }
+}

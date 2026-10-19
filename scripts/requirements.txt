@@ -1,0 +1,4 @@
+playwright>=1.40
+numpy>=1.24
+scipy>=1.10
+soundfile>=0.12

@@ -1,0 +1,19 @@
+# Raw / large data (too big for git, licences unchecked)
+IcelandData/
+dataOne/
+backup/
+rendered/
+
+# Private: budget never goes in a public repo
+budget/
+whales_heart_budget.pdf
+whales_heart_budget.xlsx
+
+# Local / system clutter
+.DS_Store
+__pycache__/
+*.pyc
+macos_permit.rtf
+
+# Zapsplat original: licensed for use in the work, not for redistribution
+whale_heart_wav/zapsplat_*

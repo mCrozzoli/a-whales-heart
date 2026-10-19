@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A Whale's Heart</title>
+  <meta name="description" content="A sonification of a whale's dive: depth becomes heartbeat, loudness and pitch. By Bryndís Snæbjörnsdóttir, Mark Wilson and Miguel Angel Crozzoli.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='7' fill='%23ffaa2c'/%3E%3Ccircle cx='16' cy='16' r='12' fill='none' stroke='%23ffaa2c' stroke-opacity='.4' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="canonical" href="https://mcrozzoli.github.io/a-whales-heart/">
+  <meta property="og:title" content="A Whale's Heart">
+  <meta property="og:description" content="A sonification of a whale's dive: depth becomes heartbeat, loudness and pitch.">
+  <meta property="og:url" content="https://mcrozzoli.github.io/a-whales-heart/">
+  <meta name="color-scheme" content="dark light">
+  <!-- The look, before first paint: darkstyle.js reads ?theme=, then the last choice, then dark,
+       and sets <html data-theme> at once. It must stay a plain blocking script in <head>. -->
+  <link rel="stylesheet" href="darkstyle/darkstyle.css">
+  <script src="darkstyle/darkstyle.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="bar">
+    <span class="name">A Whale's Heart</span>
+    <div id="looks" aria-label="Look"></div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div>
+        <h1>A Whale's Heart</h1>
+        <p>When a whale dives, its heart slows: from about thirty beats a minute at the surface to two
+           at depth. This piece follows one whale's dive and lets you hear it.</p>
+      </div>
+      <div class="beat" aria-hidden="true"></div>
+    </div>
+
+    <section id="listen">
+      <h2>Listen</h2>
+      <p>The live version runs in your browser: the dive is drawn as it plays, and SuperCollider
+         turns each moment of depth into a heartbeat.</p>
+      <p class="note">Coming soon. The browser version of the prototype is being built.</p>
+    </section>
+
+    <section id="mapping">
+      <h2>How depth becomes sound</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Sound</th><th>At the surface</th><th>At 133 m</th></tr></thead>
+          <tbody>
+            <tr><td><span class="key heart"></span>Heart rate</td><td class="num">30 bpm (a beat every 2 s)</td><td class="num">2 bpm (every 30 s)</td></tr>
+            <tr><td><span class="key amp"></span>Loudness</td><td class="num">full</td><td class="num">near silent</td></tr>
+            <tr><td><span class="key depth"></span>Pitch and speed</td><td class="num">1.00×</td><td class="num">0.26×, lower and slower</td></tr>
+            <tr><td>Lunge (feeding)</td><td class="num" colspan="2">heart rate ×2.5</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The silence between beats grows in step with depth, so the deep part of the dive is
+         heard mostly as waiting. The whale's position, from a satellite tag, moves the sound
+         between left and right.</p>
+    </section>
+
+    <section id="data">
+      <h2>The data</h2>
+      <p><strong>Depth.</strong> An Icelandic whale, one depth reading per second over 27 hours,
+         28–29 June 2018, down to 133 m. From Bryndís Snæbjörnsdóttir and Mark Wilson's project.</p>
+      <p><strong>Position.</strong> A Pacific blue whale's GPS track (tag 2015CA-MK10-00838, Point Mugu,
+         California, July–August 2015). It stands in until GPS for the Icelandic whale is available.</p>
+      <p class="cite">Palacios, D. and Mate, B. <em>Blue and Fin Whale Movements from Tags Deployed in
+         California (2014–2017) and in Oregon (2018).</em> Marine Mammal Institute, Oregon State University;
+         Axiom Data Science. <a href="https://doi.org/10.24431/rw1k463">doi:10.24431/rw1k463</a>.
+         Free to use and redistribute; provided without warranty.</p>
+    </section>
+  </main>
+
+  <footer class="bar">
+    <span>With Bryndís Snæbjörnsdóttir and Mark Wilson. Sonification, sound system and software:
+      Miguel Angel Crozzoli. Work in progress, 2026. <a href="https://crozzoli.com/#whale">crozzoli.com</a></span>
+  </footer>
+
+  <script>
+    DarkStyle.control(document.getElementById("looks"), { btnClass: "look-btn" });
+    DarkStyle.keys();
+  </script>
+</body>
+</html>
