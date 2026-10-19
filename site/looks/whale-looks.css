@@ -1,0 +1,37 @@
+/* A Whale's Heart — the prototype's light and paper looks (web build).
+   Dark is the prototype's own palette and is not touched here: these rules apply only under
+   <html data-theme="light"> or ="paper", set by darkstyle.js before first paint.
+   Hue families follow the entity across looks (darkstyle rule 2): depth blue, heart amber/ochre,
+   feeding pink/rose, amplitude green/olive. Canvas colours: whale-looks.js. */
+
+[data-theme="light"] {
+  --bg: #e8ecf3; --surface: #fbfcfe; --panel: #f2f5fa; --border: #d5dbe7;
+  --cyan: #00739e;  --cyan-lo: rgba(0, 115, 158, .09);
+  --amber: #a35a00; --amber-lo: rgba(163, 90, 0, .09);
+  --green: #137a55; --lunge: #c2185b;
+  --white: #1b2340; --muted: #5b6583; --label: #46507a;
+}
+
+[data-theme="paper"] {
+  --bg: #f3e5da; --surface: #f9f1e9; --panel: #f5ebe2; --border: #e1d0c3;
+  --cyan: #2f5d7c;  --cyan-lo: rgba(47, 93, 124, .1);
+  --amber: #9c6710; --amber-lo: rgba(156, 103, 16, .1);
+  --green: #4e6e2a; --lunge: #a8467f;
+  --white: #33203a; --muted: #6f5c69; --label: #5e4a5a;
+}
+[data-theme="paper"] body { background-image: var(--ds-grain); }
+
+/* the few literal colours in the prototype's CSS */
+[data-theme="light"] .lunge-badge { background: rgba(194, 24, 91, .08); }
+[data-theme="paper"] .lunge-badge { background: rgba(168, 70, 127, .1); }
+[data-theme="light"] .info-mono,
+[data-theme="paper"] .info-mono { background: var(--bg); }
+[data-theme="light"] #spk-viz,
+[data-theme="paper"] #spk-viz { background: var(--surface); }
+[data-theme="light"] .spk-led.active { box-shadow: 0 0 6px 1px rgba(0, 115, 158, .45); }
+[data-theme="paper"] .spk-led.active { box-shadow: 0 0 6px 1px rgba(47, 93, 124, .45); }
+[data-theme="light"] .cfg-row input[type=range]::-webkit-slider-thumb,
+[data-theme="paper"] .cfg-row input[type=range]::-webkit-slider-thumb { box-shadow: none; }
+
+/* the LOOK control (DarkStyle.control) in the Mapping panel, drawn like the panel's own toggles */
+#looks.ds-looks { gap: 0; }
